@@ -1,5 +1,6 @@
 $:.unshift File.expand_path("./../", __FILE__)
 require 'board_case'
+require 'show'
 
 class Board
   attr_accessor :board, :boardcases, :count_coup
@@ -21,6 +22,7 @@ class Board
   end
 
   def play_turn (player)
+    Show.new.show_board (@boardcases)
     puts "C'est au tour de #{player.name} !"
     # initialisation de la variable choice
     choice = ""
