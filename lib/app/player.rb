@@ -9,7 +9,4 @@ attr_accessor :name, :value
     @value = value
 
   end
-
-
-
 end

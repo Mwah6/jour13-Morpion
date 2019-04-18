@@ -2,37 +2,40 @@ $:.unshift File.expand_path("./../", __FILE__)
 require 'board_case'
 
 class Board
-  attr_accessor :board, :boardcases, :count_coup, :number_repeated
+  attr_accessor :board, :boardcases, :count_coup
 
 
   def initialize
-    @@number_possible = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    @count_coup = 9
+    # Liste des coups possibles
+    @number_possible = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    # Génération des 9 cases du morpion
     @boardcases = []
     for i in (1..9)
       @boardcases << BoardCase.new(i)
     end
   end
 
+  # Décompte des tours restant
   def coup_joue
-    @count_coup = @@number_possible.length
-    puts "Il te reste #{@count_coup} tours pour gagner !"
+    puts "Il reste #{@number_possible.length} tours pour gagner !"
   end
 
   def play_turn (player)
     puts "C'est au tour de #{player.name} !"
+    # initialisation de la variable choice
     choice = ""
+    # Boucle de choix. "Breack" la boucle si le choix est possible
     loop do
       puts "Tu choisis quel case ?"
       choice = gets.chomp
-      break if @@number_possible.include?(choice)
+      break if @number_possible.include?(choice)
       puts "#{choice} n'est pas un choix possible ! Choisis autre chose"
     end
-    puts choice
-    puts @@number_possible
-    puts choice
-    @@number_possible.delete(choice)
 
+    # Suppression du choix de la liste des coups possibles
+    @number_possible.delete(choice)
+
+    # "Case" qui va affecter le choix sur la valeur d'une case
     case choice
     when "1"
       @boardcases[0].value = player.value
@@ -55,19 +58,26 @@ class Board
     end
   end
 
+  # Test si le total des coups joués permettent au joueur de l'emporter
   def  victory? (player)
+
+    # Combinaisons à avoir pour gagner
+    victory_combination = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+
+    # Récupération des coups joués par le joueur actuel
     player_value_array = Array.new
     @boardcases.each {|x| player_value_array << x.position if x.value == player.value}
-#       player_value_array << x.position if x.value == player.value
-# end
+    # puts "le joueur actuel a joué au total : #{player_value_array}"
 
-    # player_value_array << @boardcases.each {|x| x.value == player.value}
-    puts player_value_array
-    victory_combinaison = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    victory_combinaison.each do |vict_comb|
-      return @status = "Victory !" if player_value_array.include? vict_comb
-      puts "#{vict_comb}, n'est pas bon"
+    # Test si les coups joués correspondent à une combinaison
+    victory_combination.each do |vict_comb|
+      return "Victoire !" if (vict_comb-player_value_array).empty?
+      # puts "#{vict_comb}, n'est pas bon"
     end
-    @status = "Tie !" if @@number_possible.empty?
+
+    # Test si tous coups posssibles ont été joués
+    return "Match nul !" if  @number_possible.empty?
+    # renvoie "on going" par défaut
+    return "on going"
   end
 end
