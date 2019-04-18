@@ -4,9 +4,9 @@
 
 - (Argot) Jeune enfant ou personne de petite taille, souvent employé de façon injurieuse. 
 
-- (Geek) Célèbre exercice Ruby pratiqué sous l'aire THP (en l'an 12 après Zuckerberg) : Consiste à pousser les apprenants dans leurs retranchements informatiques. A causé de nombreux cas de piraterie, dont les symptomes pouvaient aller jusqu'à la fermeture du compte GitHub voire (dans des cas extrêmes) l'achat de templates Wordpress dits "prêts à publier".
+- (Geek) Célèbre exercice Ruby pratiqué sous l'aire THP (en l'an 12 après Zuckerberg) : Consiste à pousser les apprenants dans leurs retranchements informatiques. A causé de nombreux cas de piraterie, dont les symptomes pouvaient aller jusqu'à la fermeture du compte GitHub, voire (dans des cas extrêmes), l'achat de templates Wordpress dits "prêts à publier".
 
-Sinon, ce modeste jeu d'habileté intellectuellment a été produits par les mouss' bordelais suivants : 
+Sinon, ce modeste jeu d'habileté intellectuelle été produit par les mouss' bordelais suivants : 
 
 - Sébastien Broin, alias @Sébastien B sur slack
 
