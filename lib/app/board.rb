@@ -1,10 +1,9 @@
-$:.unshift File.expand_path("./../", __FILE__)
+# $:.unshift File.expand_path("./../", __FILE__)
 require 'board_case'
 require 'show'
 
 class Board
-  attr_accessor :board, :boardcases, :count_coup
-
+  attr_accessor :boardcases
 
   def initialize
     # Liste des coups possibles
@@ -16,22 +15,20 @@ class Board
     end
   end
 
-  # Décompte des tours restant
-  def coup_joue
-    puts "Il reste #{@number_possible.length} tours pour gagner !"
-  end
-
   def play_turn (player)
+    system "clear"
+    # Décompte des tours restant
+    puts "Il reste #{@number_possible.length} tours pour gagner !"
     Show.new.show_board (@boardcases)
     puts "C'est au tour de #{player.name} !"
     # initialisation de la variable choice
     choice = ""
     # Boucle de choix. "Breack" la boucle si le choix est possible
     loop do
-      puts "Tu choisis quel case ?"
+      puts "🚨  Tu choisis quel case ? 🚨"
       choice = gets.chomp
       break if @number_possible.include?(choice)
-      puts "#{choice} n'est pas un choix possible ! Choisis autre chose"
+      puts "⚠️  ⚠️  #{choice} n'est pas un choix possible ! Choisis autre chose ⚠️  ⚠️"
     end
 
     # Suppression du choix de la liste des coups possibles
